@@ -1,0 +1,142 @@
+[
+  {
+    "question": "Erklären Sie den Aufbau des Linux/ext4 Dateisystems. Warum sieht der Aufbau der ext Dateisysteme anders aus als bei anderen Dateisystemen und was ist diesbezüglich das Alleinstellungsmerkmal?",
+    "options": [
+      "Ext4 verwendet eine dynamische Inode-Zuweisung, die bei anderen Dateisystemen nicht vorhanden ist, um Speicherplatz zu sparen und die Skalierbarkeit zu erhöhen.",
+      "Die Nutzung von Blockgruppen in ext4 unterscheidet sich von anderen Dateisystemen, indem es die Metadaten und Datenblöcke effizienter organisiert.",
+      "Ext4 nutzt Extents für eine effizientere Speicherung von Dateien, was im Vergleich zu anderen Dateisystemen zu weniger Fragmentierung und verbesserter Leistung führt, insbesondere bei der Verwaltung großer Dateien."
+    ],
+    "answer": "Ext4 nutzt Extents für eine effizientere Speicherung von Dateien, was im Vergleich zu anderen Dateisystemen zu weniger Fragmentierung und verbesserter Leistung führt, insbesondere bei der Verwaltung großer Dateien.",
+    "explanation": "Ext4 unterscheidet sich von anderen Dateisystemen durch die Einführung von Extents. Diese ermöglichen es, mehrere aufeinanderfolgende Blöcke zusammenzufassen, was die Anzahl der benötigten Inodes und den damit verbundenen Verwaltungsaufwand reduziert. Dies führt zu weniger Fragmentierung und verbessert die Performance insbesondere bei der Speicherung und Verwaltung großer Dateien."
+  },
+  {
+    "question": "Erläutern Sie externe Fragmentierung. Wie entsteht diese und welches Problem ergibt sich daraus?",
+    "options": [
+      "Externe Fragmentierung entsteht durch eine effiziente Speicherzuweisung, die große Dateien zusammenhält.",
+      "Externe Fragmentierung bezieht sich auf den Speicherverlust durch das wiederholte Überschreiben von Dateien.",
+      "Externe Fragmentierung tritt auf, wenn freier Speicherplatz als kleine, nicht zusammenhängende Stücke verteilt ist."
+    ],
+    "answer": "Externe Fragmentierung tritt auf, wenn freier Speicherplatz als kleine, nicht zusammenhängende Stücke verteilt ist.",
+    "explanation": "Externe Fragmentierung entsteht durch normale Dateioperationen wie Erstellen, Ändern, Verkleinern und Löschen von Dateien, die den Speicherplatz in kleinen, verstreuten Fragmenten hinterlassen. Das führt zu Schwierigkeiten beim Speichern größerer Dateien oder Programme, da nicht genügend zusammenhängender Speicherplatz verfügbar ist, auch wenn insgesamt ausreichend freier Speicher vorhanden ist. Dies kann zu ineffizienter Speichernutzung und verminderter Systemleistung führen."
+  },
+  {
+    "question": "Was ist die Rolle von „Blöcken“ in Dateisystemen und wie beeinflussen deren Größe und die Größe der LBAs die Eigenschaften des Dateisystems?",
+    "options": [
+      "Blöcke sind Sicherheitsprotokolle in Dateisystemen, deren Größe die Verschlüsselungsstärke bestimmt.",
+      "Blöcke beziehen sich auf die physischen Bausteine einer Festplatte, und ihre Größe bestimmt die Festplattengeschwindigkeit.",
+      "Blöcke sind grundlegende Datenspeichereinheiten in Dateisystemen, deren Größe die Speichereffizienz und Verwaltung beeinflusst."
+    ],
+    "answer": "Blöcke sind grundlegende Datenspeichereinheiten in Dateisystemen, deren Größe die Speichereffizienz und Verwaltung beeinflusst.",
+    "explanation": "In Dateisystemen sind Blöcke die Einheiten, in denen Daten gespeichert werden, oft mit einer festen Bytegröße wie 4 KB. Kleinere Blöcke können die Speichereffizienz bei der Speicherung kleiner Dateien verbessern, erhöhen aber den Verwaltungsaufwand. Größere Blöcke reduzieren den Verwaltungsaufwand, können aber bei kleinen Dateien zu Speicherplatzverschwendung führen. Die Größe der Logical Block Addressing (LBAs) bestimmt, wie groß das Dateisystem sein kann und wie groß die Speichermedien sind, die es unterstützen kann; größere LBAs ermöglichen größere Dateisystem- und Speichermedienkapazitäten."
+  },
+  {
+    "question": "Wie berechnet man die maximale Dateigröße bei einer Blockgröße von 2 KB und einer Adresslänge von 48 Bit?",
+    "options": [
+      "Multipliziere 2 KB mit 2^48.",
+      "Multipliziere 2 KB mit 48 Bit.",
+      "Addiere 2 KB zu 48 Bit."
+    ],
+    "answer": "Multipliziere 2 KB mit 2^48.",
+    "explanation": "Die maximale Dateigröße in einem Dateisystem, das 48-Bit-Adressen für Blöcke verwendet, wird durch Multiplikation der Anzahl der adressierbaren Blöcke (2^48) mit der Größe eines einzelnen Blocks (2 KB) berechnet. Das Ergebnis dieser Berechnung gibt die theoretisch maximale Größe einer Datei an, die das Dateisystem verwalten kann."
+  },
+  {
+    "question": "Was beschreibt die verkettete Speicherung in Dateisystemen und welche Varianten existieren?",
+    "options": [
+      "Speicherung in einem einzigen Block, einfach und doppelt verkettet",
+      "Speicherung in einer Kette von Blöcken, linear und hierarchisch verkettet",
+      "Speicherung in einer Kette von Blöcken, einfach und doppelt verkettet"
+    ],
+    "answer": "Speicherung in einer Kette von Blöcken, einfach und doppelt verkettet",
+    "explanation": "Die verkettete Speicherung ist ein Ansatz zur Dateispeicherung, bei dem Dateien über eine Kette von Blöcken verteilt sind, wobei jeder Block Informationen über die Position des nächsten Blocks enthält. Es gibt zwei Varianten: einfach verkettete Listen, die nur auf den nächsten Block zeigen, und doppelt verkettete Listen, die zusätzlich auf den vorherigen Block verweisen. Einfach verkettete Listen sind einfacher zu implementieren und funktionieren gut für sequentiellen Zugriff, während doppelt verkettete Listen flexibler sind und das Einfügen sowie Entfernen von Blöcken erleichtern, aber mehr Speicher für die zusätzlichen Zeiger benötigen."
+  },
+  {
+    "question": "Wie klassifiziert und behandelt MLFQ Prozesse?",
+    "options": [
+      "Interaktive und System-Prozesse: Erhöhung der Priorität für System-Prozesse",
+      "Benutzer- und Hintergrundprozesse: Benutzerprozesse erhalten mehr CPU-Zeit",
+      "Interaktive und rechenintensive Prozesse: Höhere Priorität für interaktive Prozesse"
+    ],
+    "answer": "Interaktive und rechenintensive Prozesse: Höhere Priorität für interaktive Prozesse",
+    "explanation": "Multi-Level Feedback Queue (MLFQ) unterteilt Prozesse in interaktive und rechenintensive Kategorien. Interaktive Prozesse erhalten eine höhere Priorität, um schnelle Antwortzeiten zu gewährleisten, während rechenintensive Prozesse, die längere CPU-Zyklen benötigen, in niedrigeren Queues mit sinkender Priorität eingeordnet werden. Die Prioritätenanpassung ist dynamisch: Ein Prozess, der auf Eingaben wartet, kann wieder eine höhere Priorität erhalten, um die Reaktionsfähigkeit des Systems zu verbessern."
+  },
+  {
+    "question": "Welche Arten von Interrupts existieren in Computersystemen?",
+    "options": [
+      "Programmierbare und nicht programmierbare Interrupts: z.B. BIOS-Routinen",
+      "Synchronisierte und asynchronisierte Interrupts: z.B. geplante Aufgaben",
+      "Maskierbare und nicht maskierbare Interrupts: z.B. Hardware-Interrupts und Stromausfälle"
+    ],
+    "answer": "Maskierbare und nicht maskierbare Interrupts: z.B. Hardware-Interrupts und Stromausfälle",
+    "explanation": "Interrupts sind Unterbrechungssignale, die an den Prozessor gesendet werden, und sie lassen sich in verschiedene Kategorien einteilen. Maskierbare Interrupts, wie Hardware-Interrupts von Peripheriegeräten, können vom Prozessor ignoriert werden, während nicht maskierbare Interrupts, wie kritische Hardwarefehler, sofortige Aufmerksamkeit erfordern und nicht ignoriert werden können. Software Interrupts werden durch Softwareinstruktionen ausgelöst, externe Interrupts durch Benutzereingaben und interne Interrupts durch Ereignisse innerhalb des Prozessors, wie eine Division durch Null."
+  },
+  {
+    "question": "Was passiert während eines Systemaufrufs (System Call) in einem Betriebssystem?",
+    "options": [
+      "Das Programm wird beendet und der Kernel übernimmt die Ausführung der Aufgabe.",
+      "Die CPU schaltet direkt in den Kernelmodus um, ohne den aktuellen Prozesszustand zu speichern.",
+      "Das Programm führt einen speziellen Befehl aus, der Prozessor wechselt in den Kernelmodus, und der Kernel führt die Anforderung aus."
+    ],
+    "answer": "Das Programm führt einen speziellen Befehl aus, der Prozessor wechselt in den Kernelmodus, und der Kernel führt die Anforderung aus.",
+    "explanation": "Während eines Systemaufrufs führt ein Programm einen speziellen Befehl aus, um eine Anforderung zu signalisieren. Dies bewirkt, dass der Prozessor vom Benutzer- in den Kernelmodus wechselt, was einen Kontextwechsel erfordert. Der Kernel überprüft den Systemaufruf und führt die entsprechende Funktion aus. Nach der Ausführung wird das Ergebnis vorbereitet und der Prozess wechselt zurück in den Benutzermodus, um die Ausführung des Programms mit den neuen Informationen oder Ergebnissen fortzusetzen."
+  },
+  {
+    "question": "Was ist der Zweck von Journaling in einem Dateisystem?",
+    "options": [
+      "Es beschleunigt den Zugriff auf Dateien, indem es eine schnellere Indexierung ermöglicht.",
+      "Journaling protokolliert Änderungen vor deren Durchführung, um die Datenintegrität zu sichern und eine schnelle Wiederherstellung nach Abstürzen zu ermöglichen.",
+      "Es verschlüsselt Dateien automatisch, um die Datensicherheit zu erhöhen."
+    ],
+    "answer": "Journaling protokolliert Änderungen vor deren Durchführung, um die Datenintegrität zu sichern und eine schnelle Wiederherstellung nach Abstürzen zu ermöglichen.",
+    "explanation": "Journaling ist eine Funktion in Dateisystemen, die zur Sicherung der Datenintegrität dient, indem sie zuerst Änderungen in einem speziellen Bereich des Speichers, dem Journal, protokolliert. Im Falle eines Absturzes kann das System diese Einträge nutzen, um zu überprüfen, welche Änderungen durchgeführt wurden und welche nicht, und um die unvollständigen Änderungen basierend auf dem Journal zu vollenden. Dies ermöglicht eine schnelle Wiederherstellung des Dateisystems, ohne dass umfangreiche Dateisystemprüfungen erforderlich sind."
+  },
+  {
+    "question": "Was beschreibt einen Context Switch in einem Betriebssystem?",
+    "options": [
+      "Die Aktualisierung des Systemstatus, wenn neue Hardwarekomponenten hinzugefügt werden.",
+      "Die Übertragung von Daten zwischen verschiedenen Speichermedien.",
+      "Der Wechsel des Prozessorzustands von einem Prozess zum anderen, um Multitasking zu ermöglichen."
+    ],
+    "answer": "Der Wechsel des Prozessorzustands von einem Prozess zum anderen, um Multitasking zu ermöglichen.",
+    "explanation": "Ein Context Switch ist ein Vorgang in einem Multitasking-Betriebssystem, bei dem der Zustand eines laufenden Prozesses gespeichert und der Prozessor für die Ausführung eines anderen Prozesses vorbereitet wird. Dies ist notwendig, um das Teilen der CPU zwischen verschiedenen Prozessen zu ermöglichen, sodass das System reaktionsfähig bleibt. Context Switches können aufgrund verschiedener Ereignisse auftreten, wie zum Beispiel dem Ablauf eines Zeitschlitzes, wenn ein Prozess auf Input/Output wartet oder wenn ein Prozess mit einer höheren Priorität bereit wird."
+  },
+  {
+    "question": "Wozu dienen Adressräume in der Speicherverwaltung von Computern?",
+    "options": [
+      "Zum direkten Zugriff auf die Hardwarekomponenten durch Anwendungsprogramme.",
+      "Zur Differenzierung zwischen dem Speicherplatz von Prozessen und dem tatsächlich verfügbaren physischen Speicher.",
+      "Zur Beschleunigung der Speicherzugriffszeiten durch Überbrücken der CPU."
+    ],
+    "answer": "Zur Differenzierung zwischen dem Speicherplatz von Prozessen und dem tatsächlich verfügbaren physischen Speicher.",
+    "explanation": "Adressräume sind ein Mechanismus zur Trennung des von einem Prozess verwendeten Speicherraums von den tatsächlichen physischen Speicheradressen. Diese Trennung wird durch die Speicherverwaltungseinheit (MMU) ermöglicht, die virtuelle Adressen in physische Adressen übersetzt. Adressräume bieten zahlreiche Vorteile, darunter die Isolation und Sicherheit von Prozessen, Flexibilität in der Speicherverwaltung durch Swapping, Vereinfachung der Programmierung durch Abstraktion der physischen Speicherstruktur, Effizienz durch Überbuchung und dynamische Speicherzuweisung."
+  },
+  {
+    "question": "Was beschreibt das Konzept der Pages im virtuellen Speicher?",
+    "options": [
+      "Eine Methode zur Verschlüsselung von Daten auf der Festplatte.",
+      "Die Einteilung des Speichers in Abschnitte für den Schnellzugriff.",
+      "Die Segmentierung des virtuellen Speichers in Blöcke fester Größe zur effizienten Verwaltung."
+    ],
+    "answer": "Die Segmentierung des virtuellen Speichers in Blöcke fester Größe zur effizienten Verwaltung.",
+    "explanation": "Pages im virtuellen Speicher sind gleich große Speicherblöcke, die eine effiziente Verwaltung des physischen Arbeitsspeichers ermöglichen. Jede Page hat eine virtuelle Adresse, bestehend aus einer Seitennummer und einem Offset. Die Speicherverwaltungseinheit (MMU) nutzt Seitentabellen, um die virtuellen Adressen den physischen Adressen zuzuordnen. Bei einem Page Fault wird die benötigte Page aus dem Sekundärspeicher geladen. Paging-Algorithmen verwalten, welche Pages im Speicher bleiben oder ausgelagert werden, wobei der Swap-Space auf der Festplatte als erweiterter Speicher dient. Dieses Konzept ermöglicht einen Mehrprogrammbetrieb und optimiert die Nutzung des physischen Speichers, indem nur die benötigten Teile eines Programms im Arbeitsspeicher gehalten werden."
+  },
+  {
+    "question": "Was unterscheidet den Page Replacement Algorithmus 'WSClock' von 'Not Recently Used' (NRU)?",
+    "options": [
+      "WSClock verwendet keine Referenzbits, während NRU dies tut.",
+      "WSClock basiert auf einer FIFO-Logik, wohingegen NRU auf LRU basiert.",
+      "WSClock kombiniert Working Set und Clock-Algorithmus, um effizientere Page Replacement Entscheidungen zu treffen."
+    ],
+    "answer": "WSClock kombiniert Working Set und Clock-Algorithmus, um effizientere Page Replacement Entscheidungen zu treffen.",
+    "explanation": "Der WSClock-Algorithmus ist eine Weiterentwicklung des Clock-Algorithmus und integriert das Konzept des Working Sets, um Entscheidungen über das Ersetzen von Pages im Speicher zu treffen. Im Vergleich zum 'Not Recently Used' (NRU) Algorithmus ist WSClock adaptiver und berücksichtigt das Alter der Pages sowie deren Verwendungshäufigkeit, um zu bestimmen, welche Page aus dem Speicher entfernt werden soll. Dies führt in der Regel zu effizienteren Entscheidungen, kann jedoch aufgrund seiner Komplexität und der Notwendigkeit, das Alter jeder Page zu verfolgen, auch ressourcenintensiver sein."
+  },
+  {
+    "question": "Warum ist Slab Allocation in Kombination mit dem Buddy Algorithmus vorteilhaft?",
+    "options": [
+      "Slab Allocation verwendet keine Caches, wodurch das System einfacher wird.",
+      "Slab Allocation erhöht die Speichereffizienz und reduziert Fragmentierung, insbesondere bei der Verwaltung kleiner Objekte, und ergänzt so das Buddy System.",
+      "Slab Allocation und Buddy System sind identisch und bieten keine unterschiedlichen Vorteile."
+    ],
+    "answer": "Slab Allocation erhöht die Speichereffizienz und reduziert Fragmentierung, insbesondere bei der Verwaltung kleiner Objekte, und ergänzt so das Buddy System.",
+    "explanation": "Slab Allocation ist eine Technik zur Speicherverwaltung im Betriebssystemkern, die insbesondere für die Allokation von kleinen, häufig benötigten Objekten optimiert ist. Sie verringert die interne Fragmentierung und den Verwaltungsaufwand, die beim alleinigen Einsatz des Buddy-Systems für kleine Allokationen entstehen würden. Durch die Kombination beider Algorithmen wird eine effiziente Nutzung des Speichers für Objekte unterschiedlicher Größe erreicht, wobei das Slab System sich auf kleine, oft genutzte Objekte konzentriert, während das Buddy System effektiv für größere Speicherblöcke verwendet wird."
+  }
+]
